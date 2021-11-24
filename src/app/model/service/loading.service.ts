@@ -12,7 +12,6 @@ export class LoadingService {
   constructor() { }
 
   setLoading(loading: boolean, url: string): void {
-    console.log(loading);
     if (!url) {
       throw new Error('The request URL must be provided to the LoadingService.setLoading function');
     }
@@ -25,6 +24,5 @@ export class LoadingService {
     if (this.loadingMap.size === 0) {
       this.loadingSub.next(false);
     }
-    console.log(this.loadingMap);
   }
 }

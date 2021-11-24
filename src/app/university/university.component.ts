@@ -46,6 +46,7 @@ export class UniversityComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSearch(): void {
+    this.isLoading = true;
     this.universityService.searchUniversity(this.filterValue)
       .pipe(
       takeUntil(this.destroy$.asObservable())).subscribe(res=> {
@@ -57,7 +58,7 @@ export class UniversityComponent implements OnInit, OnDestroy, AfterViewInit {
           this.pageSize
         );
       },
-      () => console.log('HTTP request completed.'));
+      () => this.isLoading = false);
   }
 
   filterOnChangeInit() {
@@ -81,7 +82,6 @@ export class UniversityComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setPagination(length: number, startIndex: number, pageSize: number) {
-    console.log(length + ' ' + startIndex + ' ' + pageSize);
     this.length = length;
     this.pageIndex = startIndex;
     this.pageSize = pageSize;

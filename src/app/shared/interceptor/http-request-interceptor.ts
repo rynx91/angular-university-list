@@ -16,12 +16,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     private snackBar: MatSnackBar,
     private translateService: TranslateService
   ) { 
-    console.log(567);
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loadingService.setLoading(true, request.url);
-    console.log(123);
     return next.handle(request)
       .pipe(catchError((err) => {
         this.loadingService.setLoading(false, request.url);
