@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
+# Feature
+This project generates a list of universites in the United States. There are 10 records per page, which you can change by selecting the items per page at the bottom of the table.
+You can also sort the records by university name.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
