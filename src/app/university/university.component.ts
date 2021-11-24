@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
+import { MatPaginator, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { Subject } from 'rxjs';
 import { debounceTime, delay, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { LoadingService } from '../model/service/loading.service';
@@ -87,12 +87,37 @@ export class UniversityComponent implements OnInit, OnDestroy, AfterViewInit {
     this.pageSize = pageSize;
   }
 
-  listenToLoading(): void {
+  listenToLoading() {
     this.loadingService.loadingSub
       .pipe(delay(0)) 
       .subscribe((loading) => {
         this.isLoading = loading;
       });
+  }
+
+  sortData(sort: Sort) {
+    console.log(32);
+    const data = this.universityList.slice();
+    let sortedData;
+    if (!sort.active || sort.direction === '') {
+      sortedData = data;
+      return;
+    }
+
+    sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return this.compare(a.name, b.name, isAsc);
+        default:
+          return 0;
+      }
+    });
+    this.dataSource.data = sortedData;
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
 

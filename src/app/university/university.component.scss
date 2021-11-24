@@ -17,6 +17,12 @@
     vertical-align: middle;
   }
 
+  ::ng-deep {
+    .mat-sort-header-arrow {
+      color: $secondary-text-color;
+    }
+  }
+
   .row--blue {
     background-color: aliceblue;
   }

@@ -15,7 +15,8 @@ import { MatDialogModule, MatFormFieldModule, MatInputModule, MatPaginatorModule
     MatSnackBarModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSortModule
   ],
   exports: [
     MatInputModule,
