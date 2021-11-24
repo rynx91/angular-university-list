@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="mt-4">
+    <h3>
+      {{ 'university.title' | translate}}
+    </h3>
+  </div>
+  <div>
+    <mat-form-field floatLabel="never" class="w-100">
+      <span matPrefix>
+        <i class="bi bi-search"></i>
+      </span>
+      <input matInput [(ngModel)]="filterValue" (ngModelChange)='filterValueOnChange($event)'
+        placeholder="{{
+          'university.search.placeholder' | translate
+        }}" [disabled]=!!isLoading/>
+    </mat-form-field>
+  </div>
+  <div [hidden]="!universityList || !universityList.length">
+    <table #dataTable mat-table [dataSource]="dataSource" matSort class="table">
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef>
+          <h4>#</h4>
+        </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          {{pageSize *(pageIndex) + (i+1)}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          <h4>{{'university.table.name' | translate}}</h4>
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-column">
+          {{element.name}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="webPages">
+        <th mat-header-cell *matHeaderCellDef>
+          <h4>{{'university.table.webPage' | translate}}</h4>
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-column">
+          <div *ngFor="let page of element.web_pages">
+            <a href="{{page}}" target="_blank">{{page}}</a>
+          </div>
+        </td>
+      </ng-container>
+      <tbody>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" 
+          [ngClass]="{'row--blue': i%2 !== 0 }">
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" (page)="updatePageInfo($event)"
+      [length]="length" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+  <div [hidden]="!!universityList && !!universityList.length" class="text-center">
+    <h2>{{ 'university.noRecord' | translate }}</h2>
+  </div>
+</div>

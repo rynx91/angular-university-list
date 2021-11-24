@@ -1,0 +1,15 @@
+@import '~src/scss/_variables.scss';
+
+header {
+
+  .navbar {
+    &--dark {
+      width: auto;
+      background-color: $primary-color;
+      font-weight: 300;
+      text-align: center;
+      color: $secondary-text-color;
+      font-size: 3rem;
+    }
+  }
+}

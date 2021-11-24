@@ -1,0 +1,17 @@
+{
+  "university": {
+    "title": "View All Universities in United States",
+    "search": {
+      "placeholder": "Search by University name"
+    },
+    "table": {
+      "name": "Name",
+      "webPage": "Web Page"
+    },
+    "noRecord": "No record found"
+  },
+  "error": {
+    "title": "Error",
+    "tryAgain": "Please try again later."
+  }
+}
